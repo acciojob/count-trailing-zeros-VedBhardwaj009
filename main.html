@@ -1,16 +1,113 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trailing Zeros in Factorial</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+      /*  your css code here. If applicable */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
 
-<html>
+      .container {
+        text-align: center;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 400px;
+      }
 
-<head>
-	<link rel="stylesheet" href="styles.css">
-</head>
+      h1 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+      }
 
-<body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+      p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 15px;
+      }
 
-</body>
+      input {
+        width: 80%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
 
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .output {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Trailing Zeros in Factorial</h1>
+      <p>
+        Enter a positive integer to calculate the number of trailing zeros in
+        its factorial:
+      </p>
+      <input
+        type="number"
+        id="inputNumber"
+        placeholder="Enter a number"
+        min="0"
+      />
+      <button id="calculateButton">Calculate</button>
+      <div class="output">
+        <p id="outputMessage">Trailing Zeros: -</p>
+      </div>
+    </div>
+    <!-- <script src="script.js"></script> -->
+    <script>
+      function trailingZeros(n) {
+        let count = 0;
+        // Count the factors of 5 in all numbers from 1 to n
+        for (let i = 5; i <= n; i *= 5) {
+          count += Math.floor(n / i);
+        }
+        return count;
+      }
+
+      document.getElementById("calculateButton").addEventListener("click", function() {
+        const input = parseInt(document.getElementById("inputNumber").value, 10);
+        if (isNaN(input) || input < 0) {
+          document.getElementById("outputMessage").textContent = "Please enter a valid non-negative integer.";
+        } else {
+          const result = trailingZeros(input);
+          document.getElementById("outputMessage").textContent = `Trailing Zeros: ${result}`;
+        }
+      });
+    </script>
+  </body>
 </html>
